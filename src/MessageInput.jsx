@@ -1,6 +1,5 @@
 const MessageInput = ({ setMessage, socket, message }) => {
   const sendMessage = () => {
-    console.log('howdy', socket, message);
 
     // sends the message to the socket in server.js to send to the chat
     socket.emit('send-chat-message', message);

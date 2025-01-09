@@ -10,7 +10,11 @@ function App() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
-  // needs to be reworked
+  /**
+   */
+
+  
+  // needs to be reworked => maybe try a different component?
   // useEffect(() => {
   //   if (!name) {
   //     const name = prompt('What is your name?');
