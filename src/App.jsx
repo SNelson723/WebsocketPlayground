@@ -11,9 +11,17 @@ function App() {
   const [messages, setMessages] = useState([]);
 
   /**
+   * TODO:
+   * 1. Figure out if I need to set up a database to keep track of who logs in 
+   * 2. If so, then see if you can figure out a form of logging in aside from Google OAuth, or maybe use both?
+   * 3. Once the user is confirmed, attach their name and time sent to the messages
+   * 4. Leave this as a group chat board at first so everyone can talk?
+   * 5. Then start getting specific with personal chats, smaller group chats, topics, etc
+   * 6. Are profiles necessary or is this just being treated as a forum?
+   * 7. That's enough tasks for now
    */
 
-  
+
   // needs to be reworked => maybe try a different component?
   // useEffect(() => {
   //   if (!name) {
