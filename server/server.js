@@ -19,11 +19,18 @@ const server = viteExpress.listen(app, PORT, () => {
   console.log(`Server is listening at ${PORT}`);
 });
 
+const users = {};
+
 // then create a socket.io => a new one is created on a visit to the site => can have multiple
 const io = new Server(server);
 
 // Socket.IO events
 // io.on('connection', (socket) => {
+
+//   socket.on('new-user', name => {
+//     users[socket.id] = name;
+//     socket.broadcast.emit('user-connected', name);
+//   });
 
 //   // this is working => client side sets the event title and you receive it here
 //   // the message is the state handled on the client side and sent here on submit
@@ -37,7 +44,12 @@ const io = new Server(server);
 //   });
 // });
 
+// maybe use this instead?
 io.on('connection', (socket) => {
+  socket.on('new-user', name => {
+    users[socket.id] = name;
+    socket.broadcast.emit('user-connected', name);
+  });
   // this is working => client side sets the event title and you receive it here
   // the message is the state handled on the client side and sent here on submit
   // so send-chat-message is the event title client side that send the message to send
