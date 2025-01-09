@@ -8,25 +8,32 @@ const socket = io('http://localhost:3000');
 
 function App() {
   const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     // Listen for 'chat-message' events from the server
     socket.on('chat-message', (data) => {
-      setMessage(data);
-      console.log(data);
+      setMessages(prevMessages => [...prevMessages, data]);
     });
 
     // Clean up the event listener when the component unmounts
     return () => {
       socket.off('chat-message');
     };
-  }, []);
+  }, [message]);
 
   return (
     <div>
       <h1>Socket.IO Demo</h1>
-      <p>Message from server: {message}</p>
-      <MessageInput setMessage={setMessage} socket={socket} message={message} />
+      <div>
+        {messages.map((message, i) => <div key={i}>{message}</div>)}
+      </div>
+      <MessageInput
+        setMessage={setMessage}
+        socket={socket}
+        message={message}
+        messages={messages}
+        setMessages={setMessages} />
     </div>
   );
 }

@@ -23,13 +23,27 @@ const server = viteExpress.listen(app, PORT, () => {
 const io = new Server(server);
 
 // Socket.IO events
-io.on('connection', (socket) => {
-  // console.log('A user connected');
-  socket.emit('chat-message', 'Hello World');
+// io.on('connection', (socket) => {
 
-  // this is working
+//   // this is working => client side sets the event title and you receive it here
+//   // the message is the state handled on the client side and sent here on submit
+//   // so send-chat-message is the event title client side that send the message to send
+//   // here to the chat
+//   socket.on('send-chat-message', message => {
+//     console.log(message);
+//     // this will send the message to everyone but the sender
+//     // it wont send the message back to the OG USER
+//     socket.broadcast.emit('chat-message', message)
+//   });
+// });
+
+io.on('connection', (socket) => {
+  // this is working => client side sets the event title and you receive it here
   // the message is the state handled on the client side and sent here on submit
+  // so send-chat-message is the event title client side that send the message to send
+  // here to the chat
   socket.on('send-chat-message', message => {
     console.log(message);
+    io.emit('chat-message', message);
   });
 });
