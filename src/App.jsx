@@ -26,7 +26,7 @@ function App() {
     <div>
       <h1>Socket.IO Demo</h1>
       <p>Message from server: {message}</p>
-      <MessageInput />
+      <MessageInput setMessage={setMessage} socket={socket} message={message} />
     </div>
   );
 }
